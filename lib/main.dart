@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'MyApp',
       theme: ThemeData(
         primarySwatch: Colors.amber,
-        scaffoldBackgroundColor: const Color(0xF2F2F2F2),
+        scaffoldBackgroundColor: const Color.fromARGB(239, 240, 240, 240),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyWidget(),
+      home: const MyNote(),
     );
   }
 }
@@ -74,7 +74,6 @@ class MyWidget extends StatelessWidget {
                         "Welcome to Sumo Great Learning Platform",
                         style: Theme.of(context).textTheme.headlineMedium,
                         textAlign: TextAlign.center,
-                        
                       ),
                       const SizedBox(height: 20),
                       Image.asset(
@@ -103,7 +102,6 @@ class MyWidget extends StatelessWidget {
                       Icons.thumb_up,
                       color: Colors.green,
                       size: 40,
-                      
                     ),
                   ),
                 ],
@@ -111,6 +109,103 @@ class MyWidget extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// full
+
+class MyCounter extends StatefulWidget {
+  const MyCounter({super.key});
+
+  @override
+  State<MyCounter> createState() => MyCounterState();
+}
+
+class MyCounterState extends State<MyCounter> {
+  int _counter = 0;
+  void _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      if (_counter > 0) {
+        _counter--;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Counter App',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 84, 194, 194),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Your Current Value',
+                  style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '$_counter',
+                  style: const TextStyle(
+                      fontSize: 47,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 34, 59, 59)),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: _increment,
+                      icon: const Icon(Icons.add),
+                      label: const Text('add'),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: _decrement,
+                      icon: const Icon(Icons.remove),
+                      label: const Text('remove'),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+class MyNote extends StatelessWidget {
+  const MyNote({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Note app'),
+        centerTitle: true,
+        backgroundColor: Colors.white,
       ),
     );
   }
